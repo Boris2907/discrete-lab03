@@ -1,8 +1,5 @@
 package lv.rbs.ds.lab03
 
-import net.liftweb.json._
-import net.liftweb.json.JsonDSL._
-
 /**
  * This object stores all information to generate JSON.
  * If prefixFun (or goodSuffixFun, badCharFun) are not needed, the respective lists are empty
@@ -17,8 +14,8 @@ class SearchTranscript(algorithm: String, pattern: String, text: CharSequence, s
     steps.foldLeft(0)((sum, step) => sum + (step._3 - step._2) + 1)
   }
 
-  def getJson(): String = {
-    val json:JValue = ("algorithm" -> algorithm) ~
+  /*def getJson(): String = {
+     val json:JsValue = ("algorithm" -> algorithm) ~
       ("pattern" -> pattern) ~
       ("text" -> text.toString) ~
       ("steps" -> steps.map {
@@ -35,5 +32,7 @@ class SearchTranscript(algorithm: String, pattern: String, text: CharSequence, s
       }) ~
       ("comparisons" -> getTotalComparisons())
     prettyRender(json)
-  }
+  }*/
+
+
 }

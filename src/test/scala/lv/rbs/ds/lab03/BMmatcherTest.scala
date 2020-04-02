@@ -1,6 +1,5 @@
-package lv.rbs.ds.lab03
-
-import net.liftweb.json._
+package scala.lv.rbs.ds.lab03
+import lv.rbs.ds.lab03.BMmatcher
 import org.scalatest._
 
 class BMmatcherTest extends FlatSpec with Matchers {
@@ -66,7 +65,7 @@ class BMmatcherTest extends FlatSpec with Matchers {
   // **************************************************************************
   // Testing the returned JSON as a parsed data structure.
   // **************************************************************************
-  ignore should "return 3 correct string fields" in {
+/*  ignore should "return 3 correct string fields" in {
     val myPattern = "ABCDABD"
     val matcher = new BMmatcher(myPattern)
     val myText = "ABC ABCDAB ABCDABCDABDE"
@@ -101,7 +100,7 @@ class BMmatcherTest extends FlatSpec with Matchers {
     resultSteps(3)("start") should be("6")
     resultSteps(3)("end") should be("0")
     resultSteps(3)("match") should be("true")
-  }
+  }*/
 
 
 

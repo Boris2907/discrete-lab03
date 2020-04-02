@@ -1,4 +1,4 @@
-package lv.rbs.ds.lab03
+package scala.lv.rbs.ds.lab03
 
 import org.scalatest._
 
