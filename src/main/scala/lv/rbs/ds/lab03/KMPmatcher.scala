@@ -54,11 +54,9 @@ class KMPmatcher(var pattern: String ){
     }
     this.comparisons += 3 // the code makes 3 more comparisons outside the while loop
     result.toIterator
-
   }
 
   def toJson(text: String): String = {
-
     val jsonAlgorithm: JsValue = Json.toJson("KMP")
     val jsonPattern: JsValue = Json.toJson(pattern)
     val jsonText: JsValue = Json.toJson(text.toString)
@@ -72,7 +70,6 @@ class KMPmatcher(var pattern: String ){
     val jsonPrefixFun: JsValue = Json.toJson(prefixFunList.toList)
    /* val jsonSteps: JsValue = Json.toJson(listForSteps) //List[Map[String, String]]*/
     val jsonComparisons: JsValue = Json.toJson(comparisons)
-
     val jsonMap: Map[String, JsValue] = Map(
       "algorithm" -> jsonAlgorithm,
       "pattern" -> jsonPattern,
