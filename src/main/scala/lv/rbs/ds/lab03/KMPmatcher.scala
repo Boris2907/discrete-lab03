@@ -1,14 +1,11 @@
 package lv.rbs.ds.lab03
 
-
 import play.api.libs.json.{JsValue, Json}
-
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 class KMPmatcher(var pattern: String ){
-  // Add some initialization steps -> you can compute the prefix function...
-  // loops...
   var comparisons : Int = 0
+
   def getPrefixFun(): ArrayBuffer[Int] = {
     val lookupTable = ArrayBuffer.fill(pattern.length)(-1)
     lookupTable(0) = 0 // first char always 0
@@ -34,42 +31,28 @@ class KMPmatcher(var pattern: String ){
   def findAllIn(text: String): Iterator[Int] = {
     var result: ArrayBuffer[Int] = ArrayBuffer()
 
-    if (pattern.length > text.length) println("bad input")
-
-    else if (pattern == text) println("same strings")
-    else {
-      val lookupTable = getPrefixFun()
-      lookupTable.drop(1)
-
-      var i= 0 // for pattern
-      var j= 0 // for searchIn
-
-      while (i < text.length) {
-        this.comparisons += 1 // count all comparisons
-        if (text(i) == pattern(j)) {
-          i += 1
-          j += 1
-
-
-        }
-        if (j == pattern.length) {
-          println(s"pattern found at ${i-j}")
-          result += (i-j)
-
-          j = lookupTable(j-1)
-        }
-        else {
-
-          if (i < text.length && text(i) != pattern(j)) {
-            if (j != 0) j = lookupTable(j-1)
-            else i+=1
-
-          }
+    val lookupTable = getPrefixFun()
+    lookupTable.drop(1)
+    var i= 0
+    var j= 0
+    while (i < text.length) {
+      this.comparisons += 1
+      if (text(i) == pattern(j)) {
+        i += 1
+        j += 1
+      }
+      if (j == pattern.length) {
+        result += (i-j)
+        j = lookupTable(j-1)
+      }
+      else {
+        if (i < text.length && text(i) != pattern(j)) {
+          if (j != 0) j = lookupTable(j-1)
+          else i+=1
         }
       }
     }
-    this.comparisons += 3 // because it does 3 comparisons outside while loop
-    println(comparisons)
+    this.comparisons += 3 // the code makes 3 more comparisons outside the while loop
     result.toIterator
 
   }
@@ -99,7 +82,6 @@ class KMPmatcher(var pattern: String ){
      "comparisons" -> jsonComparisons
     )
     val result = Json.stringify(Json.toJson(jsonMap))
-    println("Comparisons: " + comparisons)
     result
 
   }

@@ -41,7 +41,6 @@
       matcher.getPrefixFun() should be(expected)
     }
 
-
     // **************************************************************************
     // Testing the returned JSON as a string.
     // **************************************************************************
@@ -50,7 +49,6 @@
       val result = matcher.toJson("ABC ABCDAB ABCDABCDABDE")
       result should include("KMP")
     }
-
 
     // **************************************************************************
     // Testing the returned JSON as a parsed data structure.
@@ -109,5 +107,4 @@
       )
       expected.filter(quadruplet => quadruplet._4 == 1).map(quadruplet => quadruplet._1)
     }
-
   }
