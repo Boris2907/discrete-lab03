@@ -1,6 +1,9 @@
 package scala.lv.rbs.ds.lab03
+
 import lv.rbs.ds.lab03.BMmatcher
+import net.liftweb.json.DefaultFormats
 import org.scalatest._
+import net.liftweb.json._
 
 class BMmatcherTest extends FlatSpec with Matchers {
 
@@ -16,19 +19,19 @@ class BMmatcherTest extends FlatSpec with Matchers {
   // **************************************************************************
   // Check if the search algorithm actually searches substrings correctly
   // **************************************************************************
-  ignore should "return 3 items in findAllIn iterator, if they exist" in {
+  it should "return 3 items in findAllIn iterator, if they exist" in {
     val matcher = new BMmatcher("ab")
     val result = matcher.findAllIn("stab, about, above").toList
     result should be(List(2, 6, 13))
   }
 
-  ignore should "return empty findAllIn iterator, if none exist" in {
+  it should "return empty findAllIn iterator, if none exist" in {
     val matcher = new BMmatcher("ab")
     val result = matcher.findAllIn("xxxx, yyyyy, zzzzz").toList
     result should be(List())
   }
 
-  ignore should "return 1 item in findAllIn iterator" in {
+  it should "return 1 item in findAllIn iterator" in {
     val matcher = new BMmatcher("ABBABAB")
     val result = matcher.findAllIn("ABAABABBBBABBBAAABBABAB").toList
     result should be(List(16))
@@ -38,14 +41,14 @@ class BMmatcherTest extends FlatSpec with Matchers {
   // **************************************************************************
   // Check if the pattern preprocessing functions are correct
   // **************************************************************************
-  ignore should "return goodSuffixFun" in {
-    val expected = List(-7,-6,-5,-4,-3,2,5)
-    val myPattern = "ABCDABD"
+  it should "return goodSuffixFun" in {
+    val expected = List(5,5,5,2,2,1)
+    val myPattern = "CABAB"
     val matcher = new BMmatcher(myPattern)
     matcher.getGoodSuffixFun() should be(expected)
   }
 
-  ignore should "return badCharacterFun" in {
+  it should "return badCharacterFun" in {
     val expected:List[(Char,Int)] = List(('A',4),('B',5),('C',2),('D',6))
     val myPattern = "ABCDABD"
     val matcher = new BMmatcher(myPattern)
@@ -56,7 +59,7 @@ class BMmatcherTest extends FlatSpec with Matchers {
   // **************************************************************************
   // Testing the returned JSON as a string.
   // **************************************************************************
-  ignore should "return JSON string with the right algorithm type" in {
+  it should "return JSON string with the right algorithm type" in {
     val matcher = new BMmatcher("ABCDABD")
     val result = matcher.toJson("ABC ABCDAB ABCDABCDABDE")
     result should include("BM")
@@ -65,7 +68,7 @@ class BMmatcherTest extends FlatSpec with Matchers {
   // **************************************************************************
   // Testing the returned JSON as a parsed data structure.
   // **************************************************************************
-/*  ignore should "return 3 correct string fields" in {
+  it should "return 3 correct string fields" in {
     val myPattern = "ABCDABD"
     val matcher = new BMmatcher(myPattern)
     val myText = "ABC ABCDAB ABCDABCDABDE"
@@ -80,7 +83,7 @@ class BMmatcherTest extends FlatSpec with Matchers {
     tt should be(myText)
   }
 
-  ignore should "return correct steps 0, 1 and 3" in {
+  it should "return correct steps 0, 1 and 3" in {
     val matcher = new BMmatcher("ABCDABD")
     val result = matcher.toJson("ABC ABCDAB ABCDABCDABDE")
     val json = parse(result)
@@ -100,7 +103,7 @@ class BMmatcherTest extends FlatSpec with Matchers {
     resultSteps(3)("start") should be("6")
     resultSteps(3)("end") should be("0")
     resultSteps(3)("match") should be("true")
-  }*/
+  }
 
 
 
